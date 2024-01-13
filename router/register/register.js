@@ -17,9 +17,9 @@ const storage = multer.diskStorage({
 
 const upload = multer({ storage: storage });
 
-router.post('/', upload.single('profilePicture'), (req, res) => {
-  const { email, password, firstname, lastname, comment } = req.body;
-  const profilePicture = req.file ? req.file.filename : null; // 업로드된 파일명
+router.post('/', upload.single('profileImage'), (req, res) => {
+  const { email, password, firstname, lastname, oneliner } = req.body;
+  const profileImage = req.file ? req.file.filename : null; // 업로드된 파일명
 
   // 사용자가 이미 존재하는지 확인
   const checkUserQuery = 'SELECT * FROM users WHERE email = ?';
@@ -30,17 +30,18 @@ router.post('/', upload.single('profilePicture'), (req, res) => {
     }
 
     if (results.length > 0) {
+      console.log("이미 존재하는 사용자입니다.");
       return res.status(400).json({ error: '이미 존재하는 사용자입니다.' });
     }
 
     // 존재하지 않으면 새로운 사용자 추가
-    const insertUserQuery = 'INSERT INTO users (email, password, firstname, lastname, comment, profile_picture) VALUES (?, ?, ?, ?, ?, ?)';
-    db.query(insertUserQuery, [email, password, firstname, lastname, comment, profilePicture], (error) => {
+    const insertUserQuery = 'INSERT INTO users (email, password, firstname, lastname, oneliner, profileImage) VALUES (?, ?, ?, ?, ?, ?)';
+    db.query(insertUserQuery, [email, password, firstname, lastname, oneliner, profileImage], (error) => {
       if (error) {
         console.error('MySQL query error:', error);
         return res.status(500).json({ error: '서버 오류가 발생했습니다.' });
       }
-
+      console.log('회원가입이 완료되었습니다.');
       res.status(201).json({ success: true, message: '회원가입이 완료되었습니다.' });
     });
   });
