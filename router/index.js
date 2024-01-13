@@ -1,15 +1,11 @@
-const express = require('express');
-const cors = require('cors');
-const app = express();
-const port = 3000;
+var express = require('express')
+var app = express()
+var router = express.Router()
 
-// MySQL 연결 설정
-const db = require('./config/db');
+var registerRouter = require('./register/register')
+var loginRouter = require('./login/login')
 
-const router = require('./router/index');
-app.use(cors());
-app.use(router);
+router.use('/register', registerRouter)
+router.use('/login', loginRouter)
 
-app.listen(port, () => {
-  console.log(`Server is running on port ${port}`);
-});
+module.exports = router
