@@ -144,3 +144,4 @@ dist
 # dbconfig
 dbconfig.json
 /public/images/
+/public/audios/
