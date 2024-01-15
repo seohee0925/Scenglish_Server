@@ -10,6 +10,8 @@ var detailRouter = require('./quotes/quotes_detail')
 var watchedRouter = require('./quotes/quotes_user')
 var mypageRouter = require('./mypage/mypage')
 
+var educationRouter = require('./education/education_stt')
+
 router.use('/register', registerRouter)
 router.use('/login', loginRouter)
 router.use('/quotes', totalRouter)
@@ -17,5 +19,7 @@ router.use('/quotes', newTotalRouter)
 router.use('/quotes', detailRouter)
 router.use('/quotes', watchedRouter)
 router.use('/mypage', mypageRouter)
+
+router.use('/education', educationRouter)
 
 module.exports = router
