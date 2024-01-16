@@ -11,6 +11,7 @@ var watchedRouter = require('./quotes/quotes_user')
 var mypageRouter = require('./mypage/mypage')
 
 var educationRouter = require('./education/education_stt')
+var educationVocab = require('./education/education_word')
 
 router.use('/register', registerRouter)
 router.use('/login', loginRouter)
@@ -21,5 +22,6 @@ router.use('/quotes', watchedRouter)
 router.use('/mypage', mypageRouter)
 
 router.use('/education', educationRouter)
+router.use('/education', educationVocab)
 
 module.exports = router

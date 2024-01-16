@@ -143,5 +143,7 @@ dist
 
 # dbconfig
 dbconfig.json
+naverconfig.json
+
 /public/images/
 /public/audios/
