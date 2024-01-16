@@ -59,19 +59,31 @@ router.post('/addWord', async (req, res) => {
             'X-Naver-Client-Secret': naverconfig.clientSecret,
         };
 
-        // Papago API를 사용하여 영어에서 한글로 번역
-        const papagoResponse = await axios.post(
-            papagoApiUrl,
-            `source=en&target=ko&text=${encodeURIComponent(word)}`,
-            { headers: papagoHeaders }
-        );
+        for(const vocabulary of word) {
+            const checkQuery = 'SELECT * FROM vocabulary WHERE user_email = ? AND word = ?';
+            db.query(checkQuery, [user_email, vocabulary], async (error, results) => {
+                if (error) {
+                    console.error('MySQL query error:', error);
+                    return res.status(500).json({ error: '서버 오류가 발생했습니다.' });
+                }
+                // Papago API를 사용하여 영어에서 한글로 번역
+                const papagoResponse = await axios.post(
+                    papagoApiUrl,
+                    `source=en&target=ko&text=${encodeURIComponent(vocabulary)}`,
+                    { headers: papagoHeaders }
+                );
 
-        const koreanDefinition = papagoResponse.data.message.result.translatedText;
-
-        const insertQuery = 'INSERT INTO vocabulary (user_email, word, definition) VALUES (?, ?, ?)';
-        await db.query(insertQuery, [user_email, word, koreanDefinition]);
-
+                koreanDefinition = papagoResponse.data.message.result.translatedText;
+        
+                if (results.length === 0) {
+                    const insertQuery = 'INSERT INTO vocabulary (user_email, word, definition) VALUES (?, ?, ?)';
+                    db.query(insertQuery, [user_email, vocabulary, koreanDefinition]);
+                    console.log(vocabulary)
+                }
+            });
+        }
         res.status(200).json({ success: true, message: '단어가 성공적으로 추가되었습니다.' });
+        
     } catch (error) {
         console.error('단어 추가 중 오류:', error);
         res.status(500).json({ success: false, message: '서버 오류로 단어를 추가할 수 없습니다.' });
