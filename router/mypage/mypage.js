@@ -4,6 +4,7 @@ const db = require('../../config/db');
 const multer = require('multer');
 
 router.use(express.json());
+router.use('/public', express.static('public'));
 
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {

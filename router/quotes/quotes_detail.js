@@ -28,4 +28,30 @@ router.get('/getMovieInfo', (req, res) => {
     })
 })
 
+// quotes/getQuotes
+router.get('/getQuotes', (req, res) => {
+    const contentsId = req.query.contentsId; 
+    const number = parseInt(req.query.number, 10); 
+    const query = `
+        SELECT contents.*, quotes.*
+        FROM contents
+        INNER JOIN quotes ON contents.movie = quotes.movie
+        WHERE contents_id = ?
+        LIMIT ?
+    `;
+
+    db.query(query, [contentsId, number], (error, results, fields) => {
+        if(error) {
+            console.error('Error fetching movie info:', error);
+            res.status(500).json({ error: 'Internal Server error' });
+        } else {
+            if (results.length > 0) { // 영화 정보 응답
+                res.status(200).json(results);
+            } else { // 일치하는 영화가 없을 때
+                res.status(404).json({ error: 'Movie not found' })
+            }
+        }
+    })
+})
+
 module.exports = router;

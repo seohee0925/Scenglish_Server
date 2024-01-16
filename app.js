@@ -8,6 +8,8 @@ const db = require('./config/db');
 
 const router = require('./router/index');
 app.use(cors());
+
+app.use('/public', express.static('public'))
 app.use(router);
 
 app.listen(port, () => {
