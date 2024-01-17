@@ -9,6 +9,7 @@ var newTotalRouter = require('./quotes/quotes_new_total')
 var popularTotalRouter = require('./quotes/quotes_popular_total')
 var detailRouter = require('./quotes/quotes_detail')
 var mypageRouter = require('./mypage/mypage')
+var getMovieRouter = require('./mypage/mypage_get_movie')
 
 var educationRouter = require('./education/education_stt')
 var educationVocab = require('./education/education_word')
@@ -17,11 +18,14 @@ var searchRouter = require('./search/search')
 
 router.use('/register', registerRouter)
 router.use('/login', loginRouter)
+
 router.use('/quotes', totalRouter)
 router.use('/quotes', newTotalRouter)
 router.use('/quotes', popularTotalRouter)
 router.use('/quotes', detailRouter)
+
 router.use('/mypage', mypageRouter)
+router.use('/mypage', getMovieRouter)
 
 router.use('/education', educationRouter)
 router.use('/education', educationVocab)
