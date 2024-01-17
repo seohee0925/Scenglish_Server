@@ -11,7 +11,7 @@ router.get('/getMovie', (req, res) => {
     const getMovieQuery = `
         SELECT users_contents.*, contents.*
         FROM users_contents
-        JOIN contents ON users_contents.content_id = contents.content_id
+        JOIN contents ON users_contents.content_id = contents.contents_id
         WHERE users_contents.email = ?;
     `;
 
