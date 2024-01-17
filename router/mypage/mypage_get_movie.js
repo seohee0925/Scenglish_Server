@@ -17,16 +17,16 @@ router.get('/getMovie', (req, res) => {
 
     db.query(getMovieQuery, [userEmail], (error, results) => {
         if(error) {
-            console.error(error);
+            console.error('Database error:', error);
             res.status(500).json({ error: 'Internal Server error' });
         } else {
-            if (results.length > 0) {
+            if (results && results.length > 0) {
                 res.status(200).json(results);   
             } else {
                 res.status(404).json({ error: 'Movie not found '});
             }
         }
-    })
+    });    
 });
 
 module.exports = router;
