@@ -16,11 +16,14 @@
 
 ## 💻 프로젝트 기능
 ### 1️⃣ 로그인, 회원가입
+<img src="https://github.com/seohee0925/Scenglish_Server/assets/102652293/9266c6df-754d-4495-8a84-c4ceaf7b8c5b" width="640" height="360" />
+<img src="https://github.com/seohee0925/Scenglish_Server/assets/102652293/d260cc57-db76-4c39-a284-fd1d9ef71900" width="640" height="360" />
 
 - 토큰 저장
 - 자동 로그인 체크할 경우 웹 브라우저를 껐다 켜도 로그인 상태 유지
 
 ### 2️⃣ 메인 페이지
+<img src="https://github.com/seohee0925/Scenglish_Server/assets/102652293/fb765c59-ee0c-4c4e-bd8a-585dfd2c1fe1" width="640" height="360" />
 
 - 홈페이지의 모든 사용자들이 영어 공부 완료한 영화들을 count하여 ‘Popular Movies on Movingle’로 영화 리스트
 - 개봉일 순으로 ‘New Movies on Movingle’로 영화 리스트
@@ -28,11 +31,15 @@
 - 로그인을 하지 않은 상태에서 영화 포스터를 누를 경우 로그인 페이지로 넘어감
 
 ### 3️⃣ 상세 페이지
+<img src="https://github.com/seohee0925/Scenglish_Server/assets/102652293/bac7df44-d544-4723-8a24-fa361e9e29a7" width="640" height="360" />
+<img src="https://github.com/seohee0925/Scenglish_Server/assets/102652293/1439242d-164b-4887-94fe-ae69d402b48b" width="640" height="360" />
+<img src="https://github.com/seohee0925/Scenglish_Server/assets/102652293/e7702dc9-b23b-444e-b32e-fdd3c3aa072b" width="640" height="360" />
 
 - 녹음을 하고 점수를 계산 (STT (Speech-To-Text 이용)
 - 문장에서 단어를 클릭하고 Complete 하면 내 단어장에 추가
 
 ### 4️⃣ 마이페이지
+<img src="https://github.com/seohee0925/Scenglish_Server/assets/102652293/16ce1401-7957-4e9d-ada8-b9a9d3285e64" width="640" height="360" />
 
 - 파파고 API를 이용하여 추가한 단어에 대해서 단어 뜻과 함께 저장
 - tier는 contents수랑 words수에 따라서 결정
